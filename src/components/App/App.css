@@ -1,0 +1,42 @@
+
+
+
+#App-header{
+  height: 100px;
+  background-color: #256BB9;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+}
+
+textarea {
+  width: 100%;
+}
+
+body {
+  margin-top: 200px;
+  padding: 0px;
+}
+
+h1, h2 {
+  font-family: sans-serif;
+
+}
+
+h1 {
+  color: white;
+  margin-top: 30px;
+
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+h2 {
+  color: #256BB9;
+  margin-top: 50px;
+}

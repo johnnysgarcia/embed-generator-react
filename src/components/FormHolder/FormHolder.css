@@ -1,0 +1,33 @@
+
+
+#inputfields {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: 15px 150px;
+}
+
+@media only screen and (max-width: 900px) {
+  #inputfields {
+    flex-wrap: wrap;
+  }
+
+  #inputfields form {
+    flex-basis: 98%;
+  }
+
+}
+
+@media only screen and (min-width: 900px) {
+  #inputfields {
+    flex-wrap: wrap;
+  }
+  #inputfields form {
+    flex-basis: 40%;
+    max-width: 48%;
+    flex-grow: 1;
+    flex-shrink: 0;
+
+  }
+}
