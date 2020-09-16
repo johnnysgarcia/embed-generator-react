@@ -1,12 +1,19 @@
 
-
-
 #App-header{
   height: 100px;
   background-color: #256BB9;
   position: absolute;
   width: 100%;
   top: 0px;
+}
+
+footer {
+  height: 100px;
+}
+
+h4 {
+  position: relative;
+  top: 40px;
 }
 
 textarea {
@@ -20,12 +27,11 @@ body {
 
 h1, h2 {
   font-family: sans-serif;
-
 }
 
 h1 {
-  color: white;
-  margin-top: 30px;
+    color: white;
+    margin-top: 30px;
 
     display: block;
     font-size: 2em;

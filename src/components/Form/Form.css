@@ -53,6 +53,12 @@ form {
   }
 }
 
+a {
+  border: 2px solid black;
+  margin: 5px;
+  padding: 3px;
+}
+
 form > div {
   padding: 20px;
 

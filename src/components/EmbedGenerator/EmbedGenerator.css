@@ -1,0 +1,21 @@
+.fh-shape--round {
+  margin-right: 10px;
+}
+
+textarea {
+  width: 100%;
+}
+
+h1, h2 {
+  font-family: sans-serif;
+  font-size: 2em;
+  color: #256BB9;
+  margin-bottom: 15px;
+}
+
+#pagearea {
+margin-left: 10%;
+margin-right: 10%;
+margin-top: 150px;
+
+}
