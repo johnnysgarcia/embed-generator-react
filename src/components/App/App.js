@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <header id="App-header">
-      <link rel="stylesheet" href="https://fh-kit.com/buttons/v2/?red=cc0000&orange=ff6000&green=3AB134&color=cc0000" type="text/css" media="screen" />
         <center>
           <h1> Fareharbor Custom Embed Generator</h1>
         </center>

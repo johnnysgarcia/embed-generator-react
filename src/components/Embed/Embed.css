@@ -19,6 +19,7 @@ flex-wrap: wrap;
         justify-content: space-between;
 font-size: 20px;
 margin: 15px;
+
 }
 
       #fh-image-button-container .image-button {
@@ -39,6 +40,7 @@ margin: 15px;
         text-decoration: none;
         -webkit-transition: all 200ms ease;
         transition: all 200ms ease;
+        overflow: hidden;
         height: 12em; }
         @media (max-width: 800px) {
           #fh-image-button-container .image-button {

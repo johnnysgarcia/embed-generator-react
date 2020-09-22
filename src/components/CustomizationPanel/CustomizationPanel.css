@@ -1,0 +1,30 @@
+#customizationPanel > div > label {
+  margin-left: 25px;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+#customizationPanel {
+  display: flex;
+  justify-content: space-around;
+  max-width: 800px;
+}
+
+#customizationPanel > div{
+  margin: 15px;
+}
+
+#chromePicker {
+  flex-grow: 3;
+  flex-basis: 50%;
+}
+
+#sliders {
+  flex-grow: 1;
+  flex-basis: 50%
+}
+
+input[type=range]{
+  padding: 0px;
+  margin-right: 15px;
+}

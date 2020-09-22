@@ -61,10 +61,11 @@ class Form extends React.Component {
         <div>
           <label>Button Text:</label><br/>
           <input type="text" name="buttonText" id="buttonText"></input>
+          <a onClick={this.shiftLeft} id="shiftLeft" className="shift">Shift Left</a>
+          <a onClick={this.shiftRight} id="shiftRight" className="shift">Shift Right</a>
         </div>
         <div>
-          <a onClick={this.shiftLeft}>Shift Left</a>
-          <a onClick={this.shiftRight}>Shift Right</a>
+
         </div>
       </div>
     </div>
