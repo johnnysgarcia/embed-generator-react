@@ -82,8 +82,13 @@
           text-decoration: none; }
       #fh-image-button-container .book-btn {
         position: absolute;
-
         right: 1em; }
+      #title {
+        line-height: 1.3
+      }
+      #subtitle {
+        line-height: 1.2
+      }
         @media (max-width: 500px) {
           #fh-image-button-container .book-btn {
             width: 100%;

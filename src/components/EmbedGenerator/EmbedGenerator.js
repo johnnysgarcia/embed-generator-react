@@ -33,9 +33,9 @@ constructor(props){
         buttonText: 'Book Now'
       },
       {
-        title: 'Snorkeling Excursion!',
-        subtitle: 'The best snorkeling in the entire world',
-        imageURL: 'https://www.leisurepro.com/blog/wp-content/uploads/2018/08/shutterstock_664589182.jpg',
+        title: 'Kayaking Experience',
+        subtitle: 'See all the sights and sounds as you kayak down a river',
+        imageURL: 'https://www.nps.gov/glba/planyourvisit/images/KayakinginGLBA.jpg?maxwidth=1200&maxheight=1200&autorotate=false',
         bookingLink: 'fareharbor.com',
         width: 'half',
         height: 'tall',
@@ -45,7 +45,10 @@ constructor(props){
     htmlContents: "",
     displayCustomization: false,
     panelRoundness: '15px',
-    buttonRoundness: '5px'
+    buttonRoundness: '5px',
+    titleFontSize: '1em',
+    subtitleFontSize: '.7em',
+    buttonSize: '20px'
   }
   this.addPanel = this.addPanel.bind(this);
   this.removePanel = this.removePanel.bind(this);
@@ -58,6 +61,9 @@ constructor(props){
   this.handleClose = this.handleClose.bind(this)
   this.setPanelRoundness = this.setPanelRoundness.bind(this)
   this.setButtonRoundness = this.setButtonRoundness.bind(this)
+  this.setTitleFontSize = this.setTitleFontSize.bind(this)
+  this.setSubtitleFontSize = this.setSubtitleFontSize.bind(this)
+  this.setButtonSize = this.setButtonSize.bind(this)
 
 }
 
@@ -149,7 +155,7 @@ renderCode(){
             width: 65.6666666667%; }
             #fh-image-button-container .image-button.-full {
             width: 100%; }
-          .fh-button-true-flat-color.fh-size--small { border-radius: ${this.state.buttonRoundness} !important}
+          .fh-button-true-flat-color.fh-size--small { border-radius: ${this.state.buttonRoundness} !important; font-size: ${this.state.buttonSize}}
           #fh-image-button-container .image-button:hover {
             box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6); }
           #fh-image-button-container .image-button:before {
@@ -165,6 +171,14 @@ renderCode(){
           #fh-image-button-container .image-button.-short:before {
               height: 4em;
 
+          }
+          #title {
+            line-height: 1.3;
+            font-size: ${this.state.titleFontSize} !important;
+          }
+          #subtitle {
+            line-height: 1.2;
+            font-size: ${this.state.subtitleFontSize} !important
           }
         #fh-image-button-container .badge {
           position: absolute;
@@ -259,6 +273,7 @@ setPanelRoundness(event){
   this.setState({
     panelRoundness: val
   })
+  this.renderCode()
 }
 
 setButtonRoundness(event){
@@ -267,7 +282,36 @@ setButtonRoundness(event){
   this.setState({
     buttonRoundness: val
   })
+  this.renderCode()
 }
+
+setTitleFontSize(event){
+  var val = event.target.value;
+  val += "em"
+  this.setState({
+    titleFontSize: val
+  })
+  this.renderCode()
+}
+
+setSubtitleFontSize(event){
+  var val = event.target.value;
+  val += "em"
+  this.setState({
+    subtitleFontSize: val
+  })
+  this.renderCode()
+}
+
+setButtonSize(event){
+  var val = event.target.value;
+  val += "px"
+  this.setState({
+    buttonSize: val
+  })
+  this.renderCode()
+}
+
 
 render(){
   return (
@@ -282,12 +326,15 @@ render(){
 
        { this.state.displayCustomization ? <div id="popover">
          <div id="cover"/>
-         <CustomizationPanel color={this.state.color} onChange={this.changeButtonColor} changePanelRoundness={this.setPanelRoundness} changeButtonRoundness={this.setButtonRoundness}/>
+         <CustomizationPanel color={this.state.color} onChange={this.changeButtonColor} changeTitleFontSize={this.setTitleFontSize}
+         changeSubtitleFontSize={this.setSubtitleFontSize} changePanelRoundness={this.setPanelRoundness} titleFontSize={this.state.fontSize}
+         subtitleFontSize={this.state.subtitleFontSize} changeButtonRoundness={this.setButtonRoundness} changeButtonSize={this.setButtonSize} buttonSize={this.state.buttonSize}/>
        </div> : null }
        </center>
      </div>
     <h2>Embed Preview</h2>
-    <Embed id="mainEmbed" panel={this.state.dynamicPanels} color={this.state.color} panelRoundness={this.state.panelRoundness} buttonRoundness={this.state.buttonRoundness}/>
+    <Embed id="mainEmbed" panel={this.state.dynamicPanels} color={this.state.color} panelRoundness={this.state.panelRoundness} buttonRoundness={this.state.buttonRoundness}
+    titleFontSize={this.state.titleFontSize} subtitleFontSize={this.state.subtitleFontSize} buttonSize={this.state.buttonSize}/>
     <h2>Copy and paste this code</h2>
      <center>
        <div>

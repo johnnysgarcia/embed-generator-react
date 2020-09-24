@@ -29,13 +29,15 @@ render(){
       </div>
       <div id="sliders">
         <label>Panel Roundness:</label>
-        <input type="range" min="0" max="35" value={this.props.panelRoundness} class="slider" id="myRange" onChange={this.props.changePanelRoundness}></input>
+        <input type="range" min="0" max="35" value={this.props.panelRoundness} class="slider" onChange={this.props.changePanelRoundness}></input>
         <label>Button Roundness:</label>
-        <input type="range" min="0" max="21" value={this.props.panelRoundness} class="slider" id="myRange" onChange={this.props.changeButtonRoundness}></input>
+        <input type="range" min="0" max="50" value={this.props.panelRoundness} class="slider" onChange={this.props.changeButtonRoundness}></input>
         <label>Title Font Size:</label>
-        <input type="range" min="0" max="21"  class="slider" id="myRange" ></input>
+        <input type="range" min=".5" max="3"  value={this.props.titleFontSize} class="slider" step="0.1" onChange={this.props.changeTitleFontSize}></input>
         <label>Subtitle Font Size:</label>
-        <input type="range" min="0" max="21"  class="slider" id="myRange" ></input>
+        <input type="range" min=".5" max="2"  class="slider" step="0.1" onChange={this.props.changeSubtitleFontSize}></input>
+        <label>Button Size:</label>
+        <input type="range" min="15" max="30"  class="slider"  onChange={this.props.changeButtonSize}></input>
       </div>
       </div>
 
