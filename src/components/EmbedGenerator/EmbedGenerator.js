@@ -8,14 +8,34 @@ import ReactDOMServer from 'react-dom/server'
 import { ChromePicker } from 'react-color'
 
 const defaultPanel = {
-  title: 'Snorkeling Excursion!',
-  subtitle: 'The best snorkeling in the entire world',
-  imageURL: 'https://www.leisurepro.com/blog/wp-content/uploads/2018/08/shutterstock_664589182.jpg',
+  title: 'Scuba Experience',
+  subtitle: 'The best scuba diving around',
+  imageURL: 'https://www.leisurepro.com/blog/wp-content/uploads/2010/05/shutterstock_141494932-1-1366x800@2x.jpg',
   bookingLink: 'fareharbor.com',
   width: 'half',
   height: 'tall',
   buttonText: 'Book Now'
 }
+
+const panel0 = {
+    title: 'Private Sailing Lessons',
+    subtitle: 'Learn the ins and outs of sailing',
+    imageURL: 'https://i.pinimg.com/originals/1e/42/90/1e42908e712989ecaec19848be0e1d9f.jpg',
+    bookingLink: 'fareharbor.com',
+    width: 'half',
+    height: 'tall',
+    buttonText: 'Book Now'
+}
+
+const panel1 =  {
+        title: 'Kayaking Excursion',
+        subtitle: 'See all the sights and sounds as you kayak down a river',
+        imageURL: 'https://www.nps.gov/glba/planyourvisit/images/KayakinginGLBA.jpg?maxwidth=1200&maxheight=1200&autorotate=false',
+        bookingLink: 'fareharbor.com',
+        width: 'half',
+        height: 'tall',
+        buttonText: 'Book Now'
+    }
 
 class EmbedGenerator extends React.Component{
 constructor(props){
@@ -24,9 +44,9 @@ constructor(props){
     color: 'ff6000',
     dynamicPanels: [
       {
-        title: 'Snorkeling Excursion!',
-        subtitle: 'The best snorkeling in the entire world',
-        imageURL: 'https://www.leisurepro.com/blog/wp-content/uploads/2018/08/shutterstock_664589182.jpg',
+        title: 'Private Sailing Lessons',
+        subtitle: 'Learn the ins and outs of sailing',
+        imageURL: 'https://i.pinimg.com/originals/1e/42/90/1e42908e712989ecaec19848be0e1d9f.jpg',
         bookingLink: 'fareharbor.com',
         width: 'half',
         height: 'tall',
@@ -46,8 +66,8 @@ constructor(props){
     displayCustomization: false,
     panelRoundness: '15px',
     buttonRoundness: '5px',
-    titleFontSize: '1em',
-    subtitleFontSize: '.7em',
+    titleFontSize: '20px',
+    subtitleFontSize: '15px',
     buttonSize: '20px'
   }
   this.addPanel = this.addPanel.bind(this);
@@ -80,7 +100,13 @@ handleChange(name, value, index){
 
 addPanel(){
   const tempDynamicPanels = this.state.dynamicPanels;
-  tempDynamicPanels.push(defaultPanel);
+  if (tempDynamicPanels.length == 0){
+    tempDynamicPanels.push(panel0);
+  } else if (tempDynamicPanels.length == 1){
+    tempDynamicPanels.push(panel1);
+  } else {
+    tempDynamicPanels.push(defaultPanel);
+  }
   this.setState({dynamicPanels : tempDynamicPanels})
   this.renderCode()
 }
@@ -90,6 +116,10 @@ removePanel(){
   tempDynamicPanels.pop();
   this.setState({dynamicPanels : tempDynamicPanels})
   this.renderCode()
+}
+
+componentDidMount(){
+  this.renderCode();
 }
 
 renderCode(){
@@ -155,7 +185,7 @@ renderCode(){
             width: 65.6666666667%; }
             #fh-image-button-container .image-button.-full {
             width: 100%; }
-          .fh-button-true-flat-color.fh-size--small { border-radius: ${this.state.buttonRoundness} !important; font-size: ${this.state.buttonSize}}
+          .fh-button-true-flat-color.fh-size--small { border-radius: ${this.state.buttonRoundness} !important; font-size: ${this.state.buttonSize} !important}
           #fh-image-button-container .image-button:hover {
             box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6); }
           #fh-image-button-container .image-button:before {
@@ -287,7 +317,7 @@ setButtonRoundness(event){
 
 setTitleFontSize(event){
   var val = event.target.value;
-  val += "em"
+  val += "px"
   this.setState({
     titleFontSize: val
   })
@@ -296,7 +326,7 @@ setTitleFontSize(event){
 
 setSubtitleFontSize(event){
   var val = event.target.value;
-  val += "em"
+  val += "px"
   this.setState({
     subtitleFontSize: val
   })
@@ -320,14 +350,14 @@ render(){
     <FormHolder embed={this.state.dynamicPanels} onChange={this.handleChange} onShiftLeft={this.handleShiftLeft} onShiftRight={this.handleShiftRight}/>
     <center>
     <span class='button'><a className="fh-button-true-flat-green fh-shape--round" onClick={this.addPanel}>Add Panel</a></span>
-    <span class='button'>  <a className="fh-button-true-flat-red fh-shape--round" onClick={this.removePanel}>Remove Panel</a></span></center><br/>
+    <span class='button' id="removeButton">  <a className="fh-button-true-flat-red fh-shape--round" onClick={this.removePanel}>Remove Panel</a></span></center><br/>
     <div>
     <center>  <a className="fh-button-true-flat-orange fh-shape--round" onClick={this.handleToggle}>Additional Customization Options</a>
 
        { this.state.displayCustomization ? <div id="popover">
          <div id="cover"/>
-         <CustomizationPanel color={this.state.color} onChange={this.changeButtonColor} changeTitleFontSize={this.setTitleFontSize}
-         changeSubtitleFontSize={this.setSubtitleFontSize} changePanelRoundness={this.setPanelRoundness} titleFontSize={this.state.fontSize}
+         <CustomizationPanel color={this.state.color} changeColor={this.changeButtonColor} changeTitleFontSize={this.setTitleFontSize} panelRoundness={this.state.panelRoundness}
+         changeSubtitleFontSize={this.setSubtitleFontSize} changePanelRoundness={this.setPanelRoundness} titleFontSize={this.state.titleFontSize}
          subtitleFontSize={this.state.subtitleFontSize} changeButtonRoundness={this.setButtonRoundness} changeButtonSize={this.setButtonSize} buttonSize={this.state.buttonSize}/>
        </div> : null }
        </center>

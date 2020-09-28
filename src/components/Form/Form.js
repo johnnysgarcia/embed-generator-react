@@ -58,16 +58,14 @@ class Form extends React.Component {
             <label>Medium</label><input type="radio" name="height" value="medium" checked={this.props.panel.height === "medium"}required></input>
             <label>Short</label><input type="radio" name="height" value="short"  checked={this.props.panel.height === "short"}required></input>
         </div>
+        </div>
         <div>
           <label>Button Text:</label><br/>
-          <input type="text" name="buttonText" id="buttonText"></input>
+          <input type="text" name="buttonText" id="buttonText" defaultValue="Book Now"></input>
           <a onClick={this.shiftLeft} id="shiftLeft" className="shift">Shift Left</a>
           <a onClick={this.shiftRight} id="shiftRight" className="shift">Shift Right</a>
         </div>
-        <div>
 
-        </div>
-      </div>
     </div>
   </form>
 

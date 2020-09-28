@@ -1,41 +1,4 @@
 <style>
-
-      #fh-image-button-container .image-button {
-        display: -webkit-box;
-        display: flex;
-        position: relative;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-                flex-direction: column;
-        -webkit-box-pack: end;
-                justify-content: flex-end;
-        box-sizing: border-box;
-        padding: 1em;
-        margin: 0.5%;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        text-decoration: none;
-        -webkit-transition: all 200ms ease;
-        transition: all 200ms ease;
-        height: 12em; }
-        @media (max-width: 800px) {
-          #fh-image-button-container .image-button {
-            width: 100% !important; } }
-        #fh-image-button-container .image-button.-tall {
-          height: 17em; }
-          #fh-image-button-container .image-button.-medium {
-            height: 12em; }
-        #fh-image-button-container .image-button.-short {
-          height: 7em; }
-        #fh-image-button-container .image-button.-half {
-          width: 49%; }
-        #fh-image-button-container .image-button.-third {
-          width: 32.3333333333%; }
-        #fh-image-button-container .image-button.-twothirds {
-          width: 65.6666666667%; }
-          #fh-image-button-container .image-button.-full {
-          width: 100%; }
         #fh-image-button-container .image-button:hover {
           box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6); }
         #fh-image-button-container .image-button:before {
@@ -71,7 +34,7 @@
         text-decoration: none;
         font-weight: bold;
         font-family: sans-serif; }
-        @media (max-width: 500px) {
+        @media (max-width: 572px) {
           #fh-image-button-container .tour-info {
             position: relative;
             width: 100%;
@@ -89,7 +52,7 @@
       #subtitle {
         line-height: 1.2
       }
-        @media (max-width: 500px) {
+        @media (max-width: 572px) {
           #fh-image-button-container .book-btn {
             width: 100%;
             bottom: 0;

@@ -30,3 +30,9 @@ margin-top: 150px;
       bottom: 0px;
       left: 0px;
 }
+
+@media only screen and (max-width: 390px) {
+  #removeButton > a {
+    margin-top: 10px !important;
+  }
+}
