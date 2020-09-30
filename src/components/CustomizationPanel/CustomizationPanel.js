@@ -6,19 +6,6 @@ import { ChromePicker } from 'react-color'
 
 
 class CustomizationPanel extends React.Component{
-constructor(props){
-  super(props)
-  this.state  = {
-    panelRoundness: 50
-  }
-  this.changePanelRoundness = this.changePanelRoundness.bind(this)
-}
-
-changePanelRoundness(event){
-
-}
-
-
 
 render(){
     return(

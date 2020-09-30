@@ -4,6 +4,7 @@ import Panel from '../Panel/Panel'
 import ReactDOMServer from 'react-dom/server'
 
 
+//cycles through embed prop, creating panels for each object
 class Embed extends React.Component {
   render(){
     return (
@@ -13,6 +14,7 @@ class Embed extends React.Component {
         {this.props.panel.map((item, index) => (<Panel panel={item} index={index} panelRoundness={this.props.panelRoundness} buttonRoundness={this.props.buttonRoundness}
            titleFontSize={this.props.titleFontSize} subtitleFontSize={this.props.subtitleFontSize}/>))}
       </div>
+      {/* Only working way i found to override button styles from stylesheet, manually appends this html into DOM  */}
       <style dangerouslySetInnerHTML={{__html: `
       .fh-button-true-flat-color.fh-size--small { border-radius: ${this.props.buttonRoundness} !important; font-size: ${this.props.buttonSize} !important}
     `}} />

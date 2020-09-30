@@ -12,6 +12,7 @@ class Panel extends React.Component {
       backgroundImage: `url(${this.props.panel.imageURL})`
     }
 
+    //removes book button altogether if button text field is empty
     var bookBtn;
     if (this.props.panel.buttonText){
       bookBtn = <span className="fh-button-true-flat-color fh-size--small book-btn" >{this.props.panel.buttonText}</span>

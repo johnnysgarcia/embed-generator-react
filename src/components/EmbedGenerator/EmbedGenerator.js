@@ -43,24 +43,8 @@ constructor(props){
   this.state = {
     color: 'ff6000',
     dynamicPanels: [
-      {
-        title: 'Private Sailing Lessons',
-        subtitle: 'Learn the ins and outs of sailing',
-        imageURL: 'https://i.pinimg.com/originals/1e/42/90/1e42908e712989ecaec19848be0e1d9f.jpg',
-        bookingLink: 'fareharbor.com',
-        width: 'half',
-        height: 'tall',
-        buttonText: 'Book Now'
-      },
-      {
-        title: 'Kayaking Experience',
-        subtitle: 'See all the sights and sounds as you kayak down a river',
-        imageURL: 'https://www.nps.gov/glba/planyourvisit/images/KayakinginGLBA.jpg?maxwidth=1200&maxheight=1200&autorotate=false',
-        bookingLink: 'fareharbor.com',
-        width: 'half',
-        height: 'tall',
-        buttonText: 'Book Now'
-      }
+      panel0,
+      panel1
     ],
     htmlContents: "",
     displayCustomization: false,
@@ -78,7 +62,6 @@ constructor(props){
   this.handleShiftRight = this.handleShiftRight.bind(this);
   this.changeButtonColor = this.changeButtonColor.bind(this);
   this.handleToggle = this.handleToggle.bind(this)
-  this.handleClose = this.handleClose.bind(this)
   this.setPanelRoundness = this.setPanelRoundness.bind(this)
   this.setButtonRoundness = this.setButtonRoundness.bind(this)
   this.setTitleFontSize = this.setTitleFontSize.bind(this)
@@ -87,44 +70,11 @@ constructor(props){
 
 }
 
-//takes in object with name value pair, and updates state.
-
-//next step, update this so it updates the correct item in the dynamic panels array insteam of the total state
-handleChange(name, value, index){
-  let dynamicPanelsCopy = JSON.parse(JSON.stringify(this.state.dynamicPanels));
-  dynamicPanelsCopy[index][name] = value;
-  this.setState({dynamicPanels: dynamicPanelsCopy}, () => {
-    this.renderCode()
-  })
-}
-
-addPanel(){
-  const tempDynamicPanels = this.state.dynamicPanels;
-  if (tempDynamicPanels.length == 0){
-    tempDynamicPanels.push(panel0);
-  } else if (tempDynamicPanels.length == 1){
-    tempDynamicPanels.push(panel1);
-  } else {
-    tempDynamicPanels.push(defaultPanel);
-  }
-  this.setState({dynamicPanels : tempDynamicPanels})
-  this.renderCode()
-}
-
-removePanel(){
-  const tempDynamicPanels = this.state.dynamicPanels;
-  tempDynamicPanels.pop();
-  this.setState({dynamicPanels : tempDynamicPanels})
-  this.renderCode()
-}
-
-componentDidMount(){
-  this.renderCode();
-}
-
+//Generates WYSIWYG code for user to copy and paste
 renderCode(){
   var htmlContents = ReactDOMServer.renderToString(<Embed panel={this.state.dynamicPanels} color={this.state.color}/>);
   htmlContents += `
+  <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes"></script>
   <style>#content-container {
     border: 2px rgb(11, 11, 11, .41) solid;
     min-height: 200px;
@@ -253,50 +203,82 @@ renderCode(){
   this.setState({htmlContents: htmlContents})
 }
 
-handleShiftLeft(index){
-  let dynamicPanelsCopy = JSON.parse(JSON.stringify(this.state.dynamicPanels));
-  if (dynamicPanelsCopy[index - 1] === undefined){
-    alert('cant do that')
-  } else {
-  let tempPanel = dynamicPanelsCopy[index]
-  dynamicPanelsCopy[index] = dynamicPanelsCopy[index - 1];
-  dynamicPanelsCopy[index - 1] = tempPanel;
-  this.setState({dynamicPanels: dynamicPanelsCopy})
-}
+//Generates WYSIWYG code on initial page load
+componentDidMount(){
+  this.renderCode();
 }
 
-handleShiftRight(index){
-  let dynamicPanelsCopy = JSON.parse(JSON.stringify(this.state.dynamicPanels));
-  if (dynamicPanelsCopy[index + 1] === undefined){
-    alert('cant do that')
-  } else {
-    let tempPanel = dynamicPanelsCopy[index]
-    dynamicPanelsCopy[index] = dynamicPanelsCopy[index + 1];
-    dynamicPanelsCopy[index + 1] = tempPanel;
-    this.setState({dynamicPanels: dynamicPanelsCopy})
-  }
-}
 
-changeButtonColor(event){
-  const newColor = event.hex.substring(1)
-  this.setState({
-    color: newColor
+
+//handles changes to forms in form.js, takes in index of panel changed, name of property changed and new value
+//updates corresponding value in state.dynamicpanels
+handleChange(name, value, index){
+  let dynamicPanelsCopy = JSON.parse(JSON.stringify(this.state.dynamicPanels));
+  dynamicPanelsCopy[index][name] = value;
+  this.setState({dynamicPanels: dynamicPanelsCopy}, () => {
+    this.renderCode()
   })
+}
+
+//creates a new panel, and pushes it to state.dynamicPanels. Pushes different panels depending on size of current array
+addPanel(){
+  const dynamicPanelsCopy = this.state.dynamicPanels;
+  if (dynamicPanelsCopy.length == 0){
+    dynamicPanelsCopy.push(panel0);
+  } else if (dynamicPanelsCopy.length == 1){
+    dynamicPanelsCopy.push(panel1);
+  } else {
+    dynamicPanelsCopy.push(defaultPanel);
+  }
+  this.setState({dynamicPanels : dynamicPanelsCopy})
   this.renderCode()
 }
 
+//pops most recent panel from state.dynamicPanels
+removePanel(){
+  const dynamicPanelsCopy = this.state.dynamicPanels;
+  dynamicPanelsCopy.pop();
+  this.setState({dynamicPanels : dynamicPanelsCopy})
+  this.renderCode()
+}
+
+
+
+//swaps objets at positions index and index - 1 in state.dynamicPanels
+handleShiftLeft(index){
+  let dynamicPanelsCopy = this.state.dynamicPanels;
+  if (dynamicPanelsCopy[index - 1] !== undefined){
+    let tempPanel = dynamicPanelsCopy[index]
+    dynamicPanelsCopy[index] = dynamicPanelsCopy[index - 1];
+    dynamicPanelsCopy[index - 1] = tempPanel;
+    this.setState({dynamicPanels: dynamicPanelsCopy}, () => {
+      this.renderCode()
+    })
+  }
+}
+
+//swaps objets at positions index and index + 1 in state.dynamicPanels
+handleShiftRight(index){
+  let dynamicPanelsCopy = this.state.dynamicPanels;
+  if (dynamicPanelsCopy[index + 1] !== undefined){
+    let tempPanel = dynamicPanelsCopy[index]
+    dynamicPanelsCopy[index] = dynamicPanelsCopy[index + 1];
+    dynamicPanelsCopy[index + 1] = tempPanel;
+    this.setState({dynamicPanels: dynamicPanelsCopy}, () => {
+      this.renderCode()
+    })
+  }
+}
+
+
+//toggles view of customizationPanel
 handleToggle(){
   this.setState({
     displayCustomization : !this.state.displayCustomization
   })
 }
 
-handleClose(){
-  this.setState({
-    displayCustomization : false
-  })
-}
-
+//following set methods take event handlers from customizationPanel, and sets state value for changed properties
 setPanelRoundness(event){
   var val = event.target.value;
   val += "px"
@@ -341,6 +323,15 @@ setButtonSize(event){
   })
   this.renderCode()
 }
+
+changeButtonColor(event){
+  const newColor = event.hex.substring(1)
+  this.setState({
+    color: newColor
+  })
+  this.renderCode()
+}
+
 
 
 render(){

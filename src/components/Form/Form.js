@@ -61,7 +61,7 @@ class Form extends React.Component {
         </div>
         <div>
           <label>Button Text:</label><br/>
-          <input type="text" name="buttonText" id="buttonText" defaultValue="Book Now"></input>
+          <input type="text" name="buttonText" id="buttonText" value={this.props.panel.buttonText} defaultValue="Book Now"></input>
           <a onClick={this.shiftLeft} id="shiftLeft" className="shift">Shift Left</a>
           <a onClick={this.shiftRight} id="shiftRight" className="shift">Shift Right</a>
         </div>
