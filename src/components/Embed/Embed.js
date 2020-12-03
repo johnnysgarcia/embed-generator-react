@@ -6,6 +6,15 @@ import ReactDOMServer from 'react-dom/server'
 
 //cycles through embed prop, creating panels for each object
 class Embed extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.generateHTML = this.generateHTML.bind(this)
+  }
+
+  generateHTML(){
+  }
+
   render(){
     return (
       <div id="content-container">
@@ -17,6 +26,9 @@ class Embed extends React.Component {
       {/* Only working way i found to override button styles from stylesheet, manually appends this html into DOM  */}
       <style dangerouslySetInnerHTML={{__html: `
       .fh-button-true-flat-color.fh-size--small { border-radius: ${this.props.buttonRoundness} !important; font-size: ${this.props.buttonSize} !important}
+      .title {font-size: ${this.props.titleFontSize} !important}
+      .subtitle {font-size: ${this.props.subtitleFontSize} !important}
+      .panel {border-radius: ${this.props.panelRoundness} !important}
     `}} />
       </div>
 

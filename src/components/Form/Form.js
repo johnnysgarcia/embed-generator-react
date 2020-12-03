@@ -36,9 +36,9 @@ class Form extends React.Component {
 
       <form id="embedForm" onChange={this.handleChange}>
           <div id="newItem">
-          <label>Tour title:</label><br/>
+          <label>Tour Title:</label><br/>
       <input type="text" name="title" id="tourTitle"  value={this.props.panel.title} required></input><br/>
-      <label>Tour subtitle:</label><br/>
+      <label>Tour Subtitle:</label><br/>
       <input type="text" name="subtitle" id="tourSubtitle"  value={this.props.panel.subtitle} required></input><br/>
       <label>Image URL:</label><br/>
       <input type="text" name="imageURL" id="tourImage" value={this.props.panel.imageURL} required></input><br/>

@@ -5,7 +5,9 @@ import FormHolder from '../FormHolder/FormHolder.js'
 import CustomizationPanel from '../CustomizationPanel/CustomizationPanel.js'
 import './EmbedGenerator.css'
 import ReactDOMServer from 'react-dom/server'
+import Panel from '../Panel/Panel.js'
 import { ChromePicker } from 'react-color'
+import download from 'downloadjs'
 
 const defaultPanel = {
   title: 'Scuba Experience',
@@ -52,7 +54,7 @@ constructor(props){
     buttonRoundness: '5px',
     titleFontSize: '20px',
     subtitleFontSize: '15px',
-    buttonSize: '20px'
+    buttonSize: '15px'
   }
   this.addPanel = this.addPanel.bind(this);
   this.removePanel = this.removePanel.bind(this);
@@ -67,139 +69,26 @@ constructor(props){
   this.setTitleFontSize = this.setTitleFontSize.bind(this)
   this.setSubtitleFontSize = this.setSubtitleFontSize.bind(this)
   this.setButtonSize = this.setButtonSize.bind(this)
+  this.downloadHTML = this.downloadHTML.bind(this)
 
 }
 
 //Generates WYSIWYG code for user to copy and paste
 renderCode(){
-  var htmlContents = ReactDOMServer.renderToString(<Embed panel={this.state.dynamicPanels} color={this.state.color}/>);
-  htmlContents += `
+  var embedCSS = `
   <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes"></script>
-  <style>#content-container {
-    border: 2px rgb(11, 11, 11, .41) solid;
-    min-height: 200px;
-    width: 100%;
-    border-radius: 4px;
-    margin-top: 15px;
-  }
-
-
-  #fh-image-button-container {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-direction: row;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-  font-size: 20px;
-  margin: 15px;
-  }
-
-        #fh-image-button-container .image-button {
-          display: -webkit-box;
-          display: flex;
-          position: relative;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-                  flex-direction: column;
-          -webkit-box-pack: end;
-                  justify-content: flex-end;
-          box-sizing: border-box;
-          padding: 1em;
-          margin: 0.5%;
-          background-position: 50% 50%;
-          background-repeat: no-repeat;
-          border-radius: ${this.state.panelRoundness};
-          background-size: cover;
-          overflow: hidden;
-          text-decoration: none;
-          -webkit-transition: all 200ms ease;
-          transition: all 200ms ease;
-          height: 12em; }
-          @media (max-width: 800px) {
-            #fh-image-button-container .image-button {
-              width: 100% !important; } }
-          #fh-image-button-container .image-button.-tall {
-            height: 17em; }
-            #fh-image-button-container .image-button.-medium {
-              height: 12em; }
-          #fh-image-button-container .image-button.-short {
-            height: 7em; }
-          #fh-image-button-container .image-button.-half {
-            width: 49%; }
-          #fh-image-button-container .image-button.-third {
-            width: 32.3333333333%; }
-          #fh-image-button-container .image-button.-twothirds {
-            width: 65.6666666667%; }
-            #fh-image-button-container .image-button.-full {
-            width: 100%; }
-          .fh-button-true-flat-color.fh-size--small { border-radius: ${this.state.buttonRoundness} !important; font-size: ${this.state.buttonSize} !important}
-          #fh-image-button-container .image-button:hover {
-            box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6); }
-          #fh-image-button-container .image-button:before {
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: 0px;
-            left: 0;
-            height: 13em;
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), to(black));
-            background: -webkit-linear-gradient(top, transparent 0, black 100%);
-            background: linear-gradient(to bottom, transparent 0, black 100%); }
-          #fh-image-button-container .image-button.-short:before {
-              height: 4em;
-
-          }
-          #title {
-            line-height: 1.3;
-            font-size: ${this.state.titleFontSize} !important;
-          }
-          #subtitle {
-            line-height: 1.2;
-            font-size: ${this.state.subtitleFontSize} !important
-          }
-        #fh-image-button-container .badge {
-          position: absolute;
-          top: 0.5em;
-          right: 0.5em;
-          display: inline-block;
-          padding: 0.5em 1em;
-          font-size: 0.6em;
-          color: white;
-          border-radius: 5px; }
-        #fh-image-button-container .tour-info {
-          color: white;
-          line-height: 1em !important;
-          font-size: 1em;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 12px rgba(0, 0, 0, 0.6), -10px 6px 40px rgba(0, 0, 0, 0.7), 10px 6px 40px rgba(0, 0, 0, 0.7);
-          position: absolute;
-          width: 60%;
-          text-decoration: none;
-          font-weight: bold;
-          font-family: sans-serif; }
-          @media (max-width: 500px) {
-            #fh-image-button-container .tour-info {
-              position: relative;
-              width: 100%;
-              margin-bottom: 1.5em; } }
-          #fh-image-button-container .tour-info span {
-            font-size: 0.7em;
-            font-weight: normal;
-            text-decoration: none; }
-        #fh-image-button-container .book-btn {
-          position: absolute;
-
-          right: 1em; }
-          @media (max-width: 500px) {
-            #fh-image-button-container .book-btn {
-              width: 100%;
-              bottom: 0;
-              right: 0;
-              left: 0;
-              box-sizing: border-box; } }</style>
+  <style>#content-container {min-height: 160px;width: 100%;margin-top: 15px;}#fh-image-button-container {display: -webkit-box;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;flex-direction: row;flex-wrap: wrap;-webkit-box-pack: justify;justify-content: space-between;font-size: 20px;margin: 15px;}#fh-image-button-container .image-button {display: -webkit-box;display: flex;position: relative;-webkit-box-orient: vertical;-webkit-box-direction: normal;flex-direction: column;-webkit-box-pack: end;justify-content: flex-end;box-sizing: border-box;padding: 1em;margin: 0.5%;background-position: 50% 50%;background-repeat: no-repeat;border-radius: ${this.state.panelRoundness};background-size: cover;overflow: hidden;text-decoration: none;-webkit-transition: all 200ms ease;transition: all 200ms ease;height: 12em;}@media (max-width: 900px) {#fh-image-button-container .image-button {width: 100% !important;}}#fh-image-button-container .image-button.-tall {height: 17em;}#fh-image-button-container .image-button.-medium {height: 12em;}#fh-image-button-container .image-button.-short {height: 7em;}#fh-image-button-container .image-button.-half {width: 49%;}#fh-image-button-container .image-button.-third {width: 32.3333333333%;}#fh-image-button-container .image-button.-twothirds {width: 65.6666666667%;}#fh-image-button-container .image-button.-full {width: 100%;}.fh-button-true-flat-color.fh-size--small {border-radius: ${this.state.buttonRoundness}!important;font-size: ${this.state.buttonSize}!important}#fh-image-button-container .image-button:hover {box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6);}#fh-image-button-container .image-button:before {content: '';position: absolute;right: 0;bottom: 0px;left: 0;height: 13em;background:linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.55) 100%) !important;
+}#fh-image-button-container .image-button.-short:before {height: 4em;}.title {line-height: 1.3;font-size: ${this.state.titleFontSize}!important;}.subtitle {line-height: 1.2;font-size: ${this.state.subtitleFontSize}!important }#fh-image-button-container .badge {position: absolute;top: 0.5em;right: 0.5em;display: inline-block;padding: 0.5em 1em;font-size: 0.6em;color: white;border-radius: 5px;}#fh-image-button-container .tour-info {color: white;line-height: 1em !important;font-size: 1em;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 12px rgba(0, 0, 0, 0.6), -10px 6px 40px rgba(0, 0, 0, 0.7), 10px 6px 40px rgba(0, 0, 0, 0.7);position: absolute;width: 60%;text-decoration: none;font-weight: bold;font-family: sans-serif;}@media (max-width: 500px) {#fh-image-button-container .tour-info {position: relative;width: 100%;margin-bottom: 1.5em;}}#fh-image-button-container .tour-info span {font-size: 0.7em;font-weight: normal;text-decoration: none;}#fh-image-button-container .book-btn {position: absolute;right: 1em;}@media (max-width: 500px) {#fh-image-button-container .book-btn {width: 100%;bottom: 0;right: 0;left: 0;box-sizing: border-box;}}</style>
 `
+
+var htmlContents = `
+<link rel="stylesheet" href="https://fh-kit.com/buttons/v2/?color=${this.state.color}" type="text/css" media="screen" />
+<div id="content-container">
+<div id="fh-image-button-container"> \n \n`
+this.state.dynamicPanels.map((item, index) => htmlContents += `<!--Panel ` + (index + 1) + `--> \n` + ReactDOMServer.renderToStaticMarkup(<Panel panel={item} index={index}
+   titleFontSize={this.props.titleFontSize} subtitleFontSize={this.props.subtitleFontSize}/>) + `\n \n`);
+   htmlContents += ` \n </div> \n </div> \n \n <!--The Following is necessary CSS code to format embed -->`
+   htmlContents += embedCSS;
   this.setState({htmlContents: htmlContents})
 }
 
@@ -332,19 +221,22 @@ changeButtonColor(event){
   this.renderCode()
 }
 
+downloadHTML(){
+  download(this.state.htmlContents, "custom_embed.txt", "text/plain");
+}
+
 
 
 render(){
   return (
     <div id="pagearea">
-    <link rel="stylesheet" href={"https://fh-kit.com/buttons/v2/?red=cc0000&orange=ff6000&green=3AB134"} type="text/css" media="screen" />
+    <link rel="stylesheet" href={"https://fh-kit.com/buttons/v2/?red=cc0000&orange=ff6000&green=3AB134&blue=246BB8"} type="text/css" media="screen" />
     <FormHolder embed={this.state.dynamicPanels} onChange={this.handleChange} onShiftLeft={this.handleShiftLeft} onShiftRight={this.handleShiftRight}/>
-    <center>
-    <span class='button'><a className="fh-button-true-flat-green fh-shape--round" onClick={this.addPanel}>Add Panel</a></span>
-    <span class='button' id="removeButton">  <a className="fh-button-true-flat-red fh-shape--round" onClick={this.removePanel}>Remove Panel</a></span></center><br/>
+    <center >
+    <span class="buttonSpan"><a id="removeButton" className="fh-button-outline-blue fh-shape--round button" onClick={this.removePanel}>Remove</a></span>
+    <span class="buttonSpan"><a id="addButton" className="fh-button-outline-blue fh-shape--round button" onClick={this.addPanel}>Add</a></span></center>
     <div>
-    <center>  <a className="fh-button-true-flat-orange fh-shape--round" onClick={this.handleToggle}>Additional Customization Options</a>
-
+    <center id="customizeButton"> <span ><a className="fh-button-outline-green fh-shape--round" onClick={this.handleToggle}>Customize</a></span>
        { this.state.displayCustomization ? <div id="popover">
          <div id="cover"/>
          <CustomizationPanel color={this.state.color} changeColor={this.changeButtonColor} changeTitleFontSize={this.setTitleFontSize} panelRoundness={this.state.panelRoundness}
@@ -354,14 +246,15 @@ render(){
        </center>
      </div>
     <h2>Embed Preview</h2>
-    <Embed id="mainEmbed" panel={this.state.dynamicPanels} color={this.state.color} panelRoundness={this.state.panelRoundness} buttonRoundness={this.state.buttonRoundness}
-    titleFontSize={this.state.titleFontSize} subtitleFontSize={this.state.subtitleFontSize} buttonSize={this.state.buttonSize}/>
-    <h2>Copy and paste this code</h2>
+    <div id="embed"><Embed id="mainEmbed" panel={this.state.dynamicPanels} color={this.state.color} panelRoundness={this.state.panelRoundness} buttonRoundness={this.state.buttonRoundness}
+    titleFontSize={this.state.titleFontSize} subtitleFontSize={this.state.subtitleFontSize} buttonSize={this.state.buttonSize}/></div>
+    <h2>Output Code</h2>
      <center>
        <div>
          <textarea id="afil_code" rows="25" disabled="true" value={this.state.htmlContents}>
          </textarea>
        </div>
+       <span class="buttonSpan"><a className="fh-button-outline-blue fh-shape--round" style={{border: '3px'}} onClick={this.downloadHTML}>Download File</a></span>
 
      </center>
     </div>

@@ -1,39 +1,31 @@
 
 label {
   font-family: sans-serif;
-  margin-right: 8px;
-  margin-top: 12px;
+  margin-right: 5px;
+  margin-top: 8px;
   display: inline-block;
+  font-size: 12px;
 }
 
 
 input {
-  margin: 8px 0px;
+  margin: 6px 0px;
   box-sizing: border-box;
-  padding: 12px 15px;
+  padding: 8px 10px;
   border: 1px rgb(11, 11, 11, .41) solid;
   border-radius: 4px;
 }
 
 input[type=text]{
   width: 100%;
-  height: 30px;
+  height: 22px;
   color: rgb(11, 11, 11, .61)
 }
 
 
-
-input[type=color]{
-  padding: 0px;
-  margin-bottom: 15px;
-  width: 44px;
-    height: 23px;
-    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(74, 74, 74));
-}
-
 input[type=radio]{
-  margin-right: 28px;
-  margin-bottom: 10px;
+  margin-right: 20px;
+  margin-bottom: 8px;
   color: rgb(11, 11, 11, .61)
 }
 
@@ -41,13 +33,13 @@ input[type=radio]{
   display: flex;
 }
 .radio > div{
-  margin-right: 25px;
+  margin-right: 16px;
 }
 
 form {
-  margin-bottom: 18px;
-  margin-right: 18px;
-  border: 2px rgb(11, 11, 11, .41) solid;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  border: 1px rgb(11, 11, 11, .41) solid;
   border-radius: 4px;
   box-shadow: 0 4px 19px -8px rgba(0,0,0,0.6);
   flex-basis: 40%;
@@ -65,10 +57,11 @@ form {
 }
 
 .shift {
-  border: 2px solid rgb(11, 11, 11, .41);
-  padding: 3px 10px;
+  border: 1px solid rgb(11, 11, 11, .41);
+  padding: 2px 8px;
   display: inline-block;
   border-radius: 4px;
+  font-size: 14px;
 }
 
 .shift:hover {
@@ -76,14 +69,14 @@ form {
 }
 
 #shiftLeft {
-  margin: 5px 10px 0px 0px;
+  margin: 4px 8px 0px 0px;
 }
 
 #shiftRight {
-  margin: 5px 0px 10px 0px;
+  margin: 4px 0px 8px 0px;
 }
 
 form > div {
-  padding: 20px;
+  padding: 16px;
 
 }

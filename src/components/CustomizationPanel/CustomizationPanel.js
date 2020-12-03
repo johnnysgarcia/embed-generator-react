@@ -24,7 +24,7 @@ render(){
         <label>Subtitle Font Size:</label>
         <input type="range" min="10" max="35"  defaultValue="15" class="slider" step="1" onChange={this.props.changeSubtitleFontSize}></input>
         <label>Button Size:</label>
-        <input type="range" min="15" max="30"  defaultValue="20" class="slider"  onChange={this.props.changeButtonSize}></input>
+        <input type="range" min="10" max="25"  defaultValue="15" class="slider"  onChange={this.props.changeButtonSize}></input>
       </div>
       </div>
 

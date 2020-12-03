@@ -8,9 +8,8 @@
           bottom: 0px;
           left: 0;
           height: 13em;
-          background: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), to(black));
-          background: -webkit-linear-gradient(top, transparent 0, black 100%);
-          background: linear-gradient(to bottom, transparent 0, black 100%); }
+          background: linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.55) 100%);
+          }
         #fh-image-button-container .image-button.-short:before {
             height: 4em;
 
@@ -45,11 +44,13 @@
           text-decoration: none; }
       #fh-image-button-container .book-btn {
         position: absolute;
+        width: fit-content;
         right: 1em; }
-      #title {
+      .title {
         line-height: 1.3
       }
-      #subtitle {
+      .image-button:hover {box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6);}
+      .subtitle {
         line-height: 1.2
       }
         @media (max-width: 572px) {
