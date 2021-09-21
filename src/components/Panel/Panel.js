@@ -11,18 +11,20 @@ class Panel extends React.Component {
     //removes book button altogether if button text field is empty. test
     var bookBtn;
     if (this.props.panel.buttonText){
-      bookBtn = <span className="fh-button-true-flat-color fh-size--small book-btn">{this.props.panel.buttonText}</span>
+      bookBtn = <span className="fh-button-true-flat-color fh-size--small book-btn" href={this.props.panel.bookingLink}>{this.props.panel.buttonText}</span>
     } else {
       bookBtn = ""
     }
 
     return(
-      <a className={"image-button -" +  this.props.panel.width + " -" + this.props.panel.height + " panel"} target="_blank" style={{backgroundImage: `url(${this.props.panel.imageURL})`}} href={this.props.panel.bookingLink}>
-          <span className="tour-info"><span class="title">{this.props.panel.title}</span><br/>
-            <span class="subtitle">{this.props.panel.subtitle}</span>
-          </span>
+      <div className={"image-button -" +  this.props.panel.width + " -" + this.props.panel.height + " panel"} target="_blank" >
+        <a className="imgLink" href={this.props.panel.bookingLink}><span class='bgimage' style={{backgroundImage: `url(${this.props.panel.imageURL})`}}></span></a>
+        <span class="tour-info">
+          <span class="title">{this.props.panel.title}</span><br/>
+          <span class="subtitle">{this.props.panel.subtitle}</span>
+        </span>
           {bookBtn}
-      </a>
+      </div>
     )
   }
 }

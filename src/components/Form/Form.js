@@ -37,13 +37,13 @@ class Form extends React.Component {
       <form id="embedForm" onChange={this.handleChange}>
           <div id="newItem">
           <label>Tour Title:</label><br/>
-      <input type="text" name="title" id="tourTitle"  value={this.props.panel.title} required></input><br/>
+      <input type="text" name="title" id="tourTitle"  placeholder={this.props.panel.title} required></input><br/>
       <label>Tour Subtitle:</label><br/>
-      <input type="text" name="subtitle" id="tourSubtitle"  value={this.props.panel.subtitle} required></input><br/>
+      <input type="text" name="subtitle" id="tourSubtitle" placeholder={this.props.panel.subtitle} required></input><br/>
       <label>Image URL:</label><br/>
-      <input type="text" name="imageURL" id="tourImage" value={this.props.panel.imageURL} required></input><br/>
+      <input type="text" name="imageURL" id="tourImage" placeholder={this.props.panel.imageURL} required></input><br/>
       <label>Booking URL:</label><br/>
-      <input type="text" name="bookingLink" id="tourBooking" value={this.props.panel.bookingLink}required></input><br/>
+      <input type="text" name="bookingLink" id="tourBooking" placeholder={this.props.panel.bookingLink}required></input><br/>
       <div class="radio">
          <div>
            <label>Panel Width:</label><br/>
@@ -52,12 +52,14 @@ class Form extends React.Component {
            <label>2/3</label><input type="radio" name="width" value="twothirds" checked={this.props.panel.width === "twothirds"}required></input>
            <label>Full</label><input type="radio" name="width" value="full" checked={this.props.panel.width === "full"}required></input><br/>
          </div>
+         { /*
          <div>
             <label>Panel Height:</label><br/>
             <label>Tall</label><input type="radio" name="height" value="tall" checked={this.props.panel.height === "tall"} required></input>
             <label>Medium</label><input type="radio" name="height" value="medium" checked={this.props.panel.height === "medium"}required></input>
             <label>Short</label><input type="radio" name="height" value="short"  checked={this.props.panel.height === "short"}required></input>
-        </div>
+        </div> */
+      }
         </div>
         <div>
           <label>Button Text:</label><br/>
