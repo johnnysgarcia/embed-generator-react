@@ -14,7 +14,7 @@ const defaultPanel = {
   subtitle: 'The best scuba diving around',
   imageURL: 'https://www.leisurepro.com/blog/wp-content/uploads/2010/05/shutterstock_141494932-1-1366x800@2x.jpg',
   bookingLink: 'fareharbor.com',
-  width: 'half',
+  width: 'third',
   height: 'tall',
   buttonText: 'Book Now'
 }
@@ -24,7 +24,7 @@ const panel0 = {
     subtitle: 'Learn the ins and outs of sailing',
     imageURL: 'https://i.pinimg.com/originals/1e/42/90/1e42908e712989ecaec19848be0e1d9f.jpg',
     bookingLink: 'fareharbor.com',
-    width: 'half',
+    width: 'third',
     height: 'tall',
     buttonText: 'Book Now'
 }
@@ -34,7 +34,7 @@ const panel1 =  {
         subtitle: 'See all the sights and sounds as you kayak down a river',
         imageURL: 'https://www.nps.gov/glba/planyourvisit/images/KayakinginGLBA.jpg?maxwidth=1200&maxheight=1200&autorotate=false',
         bookingLink: 'fareharbor.com',
-        width: 'half',
+        width: 'third',
         height: 'tall',
         buttonText: 'Book Now'
     }
@@ -45,6 +45,7 @@ constructor(props){
   this.state = {
     color: 'ff6000',
     dynamicPanels: [
+      defaultPanel,
       panel0,
       panel1
     ],
@@ -77,8 +78,7 @@ constructor(props){
 renderCode(){
   var embedCSS = `
   <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes"></script>
-  <style>#content-container {min-height: 160px;width: 100%;margin-top: 15px;}#fh-image-button-container {display: -webkit-box;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;flex-direction: row;flex-wrap: wrap;-webkit-box-pack: justify;justify-content: space-between;font-size: 20px;margin: 15px;}#fh-image-button-container .image-button {display: -webkit-box;display: flex;position: relative;-webkit-box-orient: vertical;-webkit-box-direction: normal;flex-direction: column;-webkit-box-pack: end;justify-content: flex-end;box-sizing: border-box;padding: 1em;margin: 0.5%;background-position: 50% 50%;background-repeat: no-repeat;border-radius: ${this.state.panelRoundness};background-size: cover;overflow: hidden;text-decoration: none;-webkit-transition: all 200ms ease;transition: all 200ms ease;height: 12em;}@media (max-width: 900px) {#fh-image-button-container .image-button {width: 100% !important;}}#fh-image-button-container .image-button.-tall {height: 17em;}#fh-image-button-container .image-button.-medium {height: 12em;}#fh-image-button-container .image-button.-short {height: 7em;}#fh-image-button-container .image-button.-half {width: 49%;}#fh-image-button-container .image-button.-third {width: 32.3333333333%;}#fh-image-button-container .image-button.-twothirds {width: 65.6666666667%;}#fh-image-button-container .image-button.-full {width: 100%;}.fh-button-true-flat-color.fh-size--small {border-radius: ${this.state.buttonRoundness}!important;font-size: ${this.state.buttonSize}!important}#fh-image-button-container .image-button:hover {box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6);}#fh-image-button-container .image-button:before {content: '';position: absolute;right: 0;bottom: 0px;left: 0;height: 13em;background:linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.55) 100%) !important;
-}#fh-image-button-container .image-button.-short:before {height: 4em;}.title {line-height: 1.3;font-size: ${this.state.titleFontSize}!important;}.subtitle {line-height: 1.2;font-size: ${this.state.subtitleFontSize}!important }#fh-image-button-container .badge {position: absolute;top: 0.5em;right: 0.5em;display: inline-block;padding: 0.5em 1em;font-size: 0.6em;color: white;border-radius: 5px;}#fh-image-button-container .tour-info {color: white;line-height: 1em !important;font-size: 1em;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 12px rgba(0, 0, 0, 0.6), -10px 6px 40px rgba(0, 0, 0, 0.7), 10px 6px 40px rgba(0, 0, 0, 0.7);position: absolute;width: 60%;text-decoration: none;font-weight: bold;font-family: sans-serif;}@media (max-width: 500px) {#fh-image-button-container .tour-info {position: relative;width: 100%;margin-bottom: 1.5em;}}#fh-image-button-container .tour-info span {font-size: 0.7em;font-weight: normal;text-decoration: none;}#fh-image-button-container .book-btn {position: absolute;right: 1em;}@media (max-width: 500px) {#fh-image-button-container .book-btn {width: 100%;bottom: 0;right: 0;left: 0;box-sizing: border-box;}}</style>
+ <style> #content-container { min-height: 160px; width: 100%; margin-top: 15px; } #fh-image-button-container { display: -webkit-box;display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; flex-direction: row; flex-wrap: wrap; -webkit-box-pack: justify; justify-content: space-between; font-size: 20px; margin: 15px; align-items: flex-start; } #fh-image-button-container .image-button { display: -webkit-box; display: flex;position: relative; -webkit-box-orient: vertical; -webkit-box-shadow: 0 1px 3px 0 rgb(0 0 0 / 8%), 0 4px 6px 0 rgb(0 0 0 / 10%); -webkit-box-direction: normal; flex-direction: column; -webkit-box-pack: end; justify-content: center; box-sizing: border-box; margin: 1%; background-position: 50% 50%; background-repeat: no-repeat; border-radius: ${this.state.panelRoundness}; background-size: cover; overflow: hidden; text-decoration: none; -webkit-transition: all 200ms ease; transition: all 200ms ease; } /* fall back widths */ #fh-image-button-container .image-button.-half { flex-basis: 48% !important; } #fh-image-button-container .image-button.-third { flex-basis: 31.3% !important; } #fh-image-button-container .image-button.-twothirds { flex-basis: 64.6666666667%; } #fh-image-button-container .image-button.-full { flex-basis: 100%; } @media only screen and (max-width: 800px) { #fh-image-button-container .image-button.-third { flex-basis: 48% !important; } #fh-image-button-container .image-button.-twothirds { flex-basis: 48% !important; } } .bgimage { display: flex; background-position: center center; background-size: cover; min-height: 10em; filter: brightness(80%); transition: filter 200ms ease; } .image-button:hover > a > span { filter: brightness(100%); } @media only screen and (max-width: 1000px) { .bgimage { min-height: 8em; } } .fh-button-true-flat-color.fh-size--small { border-radius: ${this.state.buttonRoundness} !important; font-size: ${this.state.buttonSize} !important; margin: 0% 3.5% 15px 3.5% !important; } #fh-image-button-container .image-button:hover { box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6); } #fh-image-button-container .badge { position: absolute; top: 0.5em; right: 0.5em; display: inline-block; padding: 0.5em 1em; font-size: 0.6em; color: white; border-radius: 5px; } #fh-image-button-container .tour-info { color: black; line-height: 1em !important; font-size: 1em; padding: 20px 15px !important; text-decoration: none; font-weight: bold; font-family: sans-serif; } .title { flex-basis: 100%; line-height: 1.3; font-size: ${this.state.titleFontSize} !important; } .subtitle { flex-basis: 100%; line-height: 1.2; font-size: ${this.state.subtitleFontSize} !important; } @media (max-width: 500px) { #fh-image-button-container .book-btn { bottom: 0; right: 0; left: 0; box-sizing: border-box; } #fh-image-button-container .image-button.-third { flex-basis: 99% !important; } #fh-image-button-container .image-button.-half{ flex-basis: 99% !important; } #fh-image-button-container .image-button.-twothirds{ flex-basis: 99% !important; } .bgimage { min-height: 10em; } } #fh-image-button-container .tour-info span { font-size: 0.7em; font-weight: normal; text-decoration: none; } </style>
 `
 
 var htmlContents = `
