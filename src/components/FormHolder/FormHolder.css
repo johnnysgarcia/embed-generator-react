@@ -24,8 +24,6 @@
     flex-wrap: wrap;
   }
   #inputfields form {
-    flex-basis: 40%;
-    max-width: 48%;
     flex-grow: 1;
     flex-shrink: 0;
 

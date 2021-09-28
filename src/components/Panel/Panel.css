@@ -1,62 +1,165 @@
-<style>
-        #fh-image-button-container .image-button:hover {
-          box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6); }
-        #fh-image-button-container .image-button:before {
-          content: '';
-          position: absolute;
-          right: 0;
-          bottom: 0px;
-          left: 0;
-          height: 13em;
-          background: linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.55) 100%);
-          }
-        #fh-image-button-container .image-button.-short:before {
-            height: 4em;
 
-        }
-      #fh-image-button-container .badge {
-        position: absolute;
-        top: 0.5em;
-        right: 0.5em;
-        display: inline-block;
-        padding: 0.5em 1em;
-        font-size: 0.6em;
-        color: white;
-        border-radius: 5px; }
-      #fh-image-button-container .tour-info {
-        color: white;
-        line-height: 1em !important;
-        font-size: 1em;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 12px rgba(0, 0, 0, 0.6), -10px 6px 40px rgba(0, 0, 0, 0.7), 10px 6px 40px rgba(0, 0, 0, 0.7);
-        position: absolute;
-        width: 60%;
-        text-decoration: none;
-        font-weight: bold;
-        font-family: sans-serif; }
-        @media (max-width: 572px) {
-          #fh-image-button-container .tour-info {
-            position: relative;
-            width: 100%;
-            margin-bottom: 1.5em; } }
-        #fh-image-button-container .tour-info span {
-          font-size: 0.7em;
-          font-weight: normal;
-          text-decoration: none; }
-      #fh-image-button-container .book-btn {
-        position: absolute;
-        width: fit-content;
-        right: 1em; }
-      .title {
-        line-height: 1.3
-      }
-      .image-button:hover {box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6);}
-      .subtitle {
-        line-height: 1.2
-      }
-        @media (max-width: 572px) {
-          #fh-image-button-container .book-btn {
-            width: 100%;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            box-sizing: border-box; } }
+/* fall back widths */
+#fh-image-button-container .image-button.-half {
+flex-basis: 48% !important;
+}
+
+#fh-image-button-container .image-button.-third {
+flex-basis: 31.3% !important;
+}
+
+#fh-image-button-container .image-button.-twothirds {
+flex-basis: 64.6666666667%;
+}
+#fh-image-button-container .image-button.-full {
+flex-basis: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+#fh-image-button-container .image-button.-third {
+flex-basis: 48% !important;
+}
+#fh-image-button-container .image-button.-twothirds {
+flex-basis: 48% !important;
+}
+}
+
+.bgimage {
+display: flex;
+background-position: center center;
+background-size: cover;
+min-height: 10em;
+filter: brightness(90%);
+transition: filter 200ms ease;
+}
+
+
+
+
+@media only screen and (max-width: 1000px) {
+.bgimage {
+min-height: 8em;
+}
+}
+
+
+
+.fh-button-true-flat-color.fh-size--small {
+  border-radius: 5px !important;
+  font-size: 15px !important
+}
+
+#fh-image-button-container .image-button:hover {
+  box-shadow: 0 4px 16px -1px rgba(0, 0, 0, 0.6);
+}
+
+.image-button:hover > a > span {
+filter: brightness(110%);
+}
+
+
+/*
+#fh-image-button-container .image-button:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  left: 0;
+  height: 13em;
+  background:linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.55) 100%) !important;
+}
+
+
+#fh-image-button-container .image-button.-short:before {
+  height: 4em;
+}    */
+
+
+#fh-image-button-container .badge {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: 0.6em;
+  color: white;
+  border-radius: 5px;
+}
+
+/*
+  @media only screen and (min-width: 600px) {
+    #fh-image-button-container .tour-info {
+      max-width: calc(100% - 1em - 120px);
+    }
+  }
+*/
+#fh-image-button-container .tour-info {
+  color: black;
+  line-height: 1em !important;
+  font-size: 1em;
+  padding: 20px 15px !important;
+  /*
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 12px rgba(0, 0, 0, 0.6), -10px 6px 40px rgba(0, 0, 0, 0.7), 10px 6px 40px rgba(0, 0, 0, 0.7);
+   position: absolute;
+  width: 60%;
+  */
+  text-decoration: none;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.title {
+  flex-basis: 100%;
+  line-height: 1.3;
+  font-size: 20px!important;
+}
+
+.subtitle {
+  flex-basis: 100%;
+  line-height: 1.2;
+  font-size: 15px !important;
+}
+
+.book_btn{
+  display: block !important;
+}
+
+.btn_container {
+  display: inline-block;
+  margin: 0% 3% 15px 3% !important;
+}
+
+@media (max-width: 500px) {
+  #fh-image-button-container .book-btn {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    box-sizing: border-box;
+  }
+  #fh-image-button-container .image-button.-third {
+  flex-basis: 99% !important;
+  }
+  #fh-image-button-container .image-button.-half{
+  flex-basis: 99% !important;
+  }
+  #fh-image-button-container .image-button.-twothirds{
+  flex-basis: 99% !important;
+  }
+  .bgimage {
+  min-height: 10em;
+  }
+
+}
+
+#fh-image-button-container .tour-info span {
+  font-size: 0.7em;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+/*
+#fh-image-button-container .book-btn {
+  position: absolute;
+  right: 1em;
+}
+*/
