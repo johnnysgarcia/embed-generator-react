@@ -9,7 +9,7 @@ import Panel from '../Panel/Panel.js'
 import { ChromePicker } from 'react-color'
 import download from 'downloadjs'
 
-const defaultPanel = {
+const panel2 = {
   title: 'Scuba Experience',
   subtitle: 'The best scuba diving around',
   imageURL: 'https://www.leisurepro.com/blog/wp-content/uploads/2010/05/shutterstock_141494932-1-1366x800@2x.jpg',
@@ -39,15 +39,25 @@ const panel1 =  {
         buttonText: 'Book Now'
     }
 
+    const emptyPanel = {
+      title: '',
+      subtitle: '',
+      imageURL: '',
+      bookingLink: '',
+      width: 'third',
+      height: 'tall',
+      buttonText: 'Book Now'
+    }
+
 class EmbedGenerator extends React.Component{
 constructor(props){
   super(props)
   this.state = {
     color: 'ff6000',
     dynamicPanels: [
-      defaultPanel,
       panel0,
-      panel1
+      panel1,
+      panel2
     ],
     htmlContents: "",
     displayCustomization: false,
@@ -120,8 +130,10 @@ addPanel(){
     dynamicPanelsCopy.push(panel0);
   } else if (dynamicPanelsCopy.length == 1){
     dynamicPanelsCopy.push(panel1);
+  } else if (dynamicPanelsCopy.length == 2){
+    dynamicPanelsCopy.push(panel2);
   } else {
-    dynamicPanelsCopy.push(defaultPanel);
+    dynamicPanelsCopy.push(emptyPanel);
   }
   this.setState({dynamicPanels : dynamicPanelsCopy})
   this.renderCode()
